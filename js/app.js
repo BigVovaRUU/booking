@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmTime = document.getElementById("confirm-time");
   const confirmService = document.getElementById("confirm-service");
 
-  // Тема
+  // Переключение темы
   themeToggle.addEventListener("click", () => {
     document.documentElement.classList.toggle("dark");
     themeIcon.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙";
@@ -27,13 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".calendar-day").forEach(d => d.classList.remove("bg-primary","text-white"));
       btn.classList.add("bg-primary","text-white");
-      confirmDate.textContent = `July ${i}, 2024`;
+      confirmDate.textContent = `Июль ${i}, 2024`;
     });
     calendar.appendChild(btn);
   }
 
   // Слоты времени
-  const slots = ["9:00 AM","9:30 AM","10:00 AM","10:30 AM","11:00 AM","11:30 AM","1:00 PM","1:30 PM","2:00 PM"];
+  const slots = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "13:00", "13:30", "14:00"];
   slots.forEach(slot => {
     const label = document.createElement("label");
     label.className = "cursor-pointer";
@@ -56,10 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("name").value.trim();
     const phone = document.getElementById("phone").value.trim();
     const email = document.getElementById("email").value.trim();
-    const service = document.getElementById("reason").value.trim() || "Routine Checkup";
+    const service = document.getElementById("reason").value.trim() || "Профилактический осмотр";
 
     if (!name || !phone || !email) {
-      alert("Please fill in all required fields.");
+      alert("Пожалуйста, заполните все обязательные поля.");
       return;
     }
     confirmService.textContent = service;
