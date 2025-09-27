@@ -66,6 +66,8 @@ cd care-dental
 ![Логотип](img/page2.png)
 
 Экран подтверждения
+![Логотип](img/page3.png)
+![Логотип](img/page4.png)
 
 🧑‍💻 Автор
 
