@@ -2,8 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const calendar = document.getElementById("calendar");
   const timeSlots = document.getElementById("time-slots");
   const confirmBtn = document.getElementById("confirm-btn");
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIcon = document.getElementById("theme-icon");
 
-  // Генерация календаря (30 дней)
+  // Тема
+  themeToggle.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    themeIcon.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙";
+  });
+
+  // Календарь (30 дней)
   for (let i = 1; i <= 30; i++) {
     const btn = document.createElement("button");
     btn.textContent = i;
@@ -11,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".calendar-day").forEach(d => d.classList.remove("bg-primary","text-white"));
       btn.classList.add("bg-primary","text-white");
+      localStorage.setItem("appointmentDate", `July ${i}, 2024`);
     });
     calendar.appendChild(btn);
   }
@@ -21,27 +30,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const label = document.createElement("label");
     label.className = "cursor-pointer";
     label.innerHTML = `
-      <input type="radio" name="time-slot" class="sr-only" />
+      <input type="radio" name="time-slot" class="sr-only"/>
       <div class="text-center text-sm font-medium py-3 px-2 rounded-lg border border-border-light dark:border-border-dark hover:border-primary transition">${slot}</div>
     `;
     const input = label.querySelector("input");
     input.addEventListener("change", () => {
       timeSlots.querySelectorAll("div").forEach(d => d.classList.remove("bg-primary","text-white","border-primary"));
       label.querySelector("div").classList.add("bg-primary","text-white","border-primary");
+      localStorage.setItem("appointmentTime", slot);
     });
     timeSlots.appendChild(label);
   });
 
-  // Подтверждение (валидация + редирект)
+  // Подтверждение
   confirmBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const name = document.getElementById("name").value.trim();
     const phone = document.getElementById("phone").value.trim();
     const email = document.getElementById("email").value.trim();
+    const service = document.getElementById("reason").value.trim() || "Routine Checkup";
     if (!name || !phone || !email) {
       alert("Please fill in all required fields.");
       return;
     }
+    localStorage.setItem("appointmentService", service);
     window.location.href = "success.html";
   });
 });

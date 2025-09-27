@@ -1,31 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Appointment Success</title>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#13b6ec",
+            "background-light": "#f6f8f8",
+            "background-dark": "#101d22",
+          },
+          fontFamily: { display: ["Inter"] },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "0.75rem",
+            xl: "1rem",
+            full: "9999px",
+          },
+        },
+      },
+    }
+  </script>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 dark:border-gray-800">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-4">
+          <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 4C25.78 14.22 33.78 22.22 44 24C33.78 25.78 25.78 33.78 24 44C22.22 33.78 14.22 25.78 4 24C14.22 22.22 22.22 14.22 24 4Z" fill="currentColor"/>
+          </svg>
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white">Smile Studio</h2>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary" href="#">Services</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary" href="#">Team</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary" href="#">Locations</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary" href="#">Financing</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary" href="#">Reviews</a>
+        </nav>
+        <div class="flex items-center">
+          <a href="index.html" class="bg-primary text-white font-bold text-sm py-2 px-4 rounded-lg hover:bg-primary/90 transition">
+            Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
   <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="w-full max-w-md space-y-8 animate-[fadeIn_0.8s_ease]">
-      <div class="bg-white dark:bg-background-dark/50 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 text-center">
-        <h1 class="text-4xl font-bold text-primary mb-2">Thank You!</h1>
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">We're excited to see you soon.</p>
-        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-primary/20 animate-bounce">
-          <span class="material-symbols-outlined text-primary text-3xl">check</span>
+      <div class="bg-content-light dark:bg-content-dark p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+
+        <!-- Header -->
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-primary mb-2">Thank You!</h1>
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">We're excited to see you soon.</p>
+          <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-primary/20 animate-bounce">
+            <span class="material-symbols-outlined text-primary text-3xl">check</span>
+          </div>
+          <h2 class="mt-6 text-3xl font-bold text-gray-900 dark:text-white">Appointment Booked!</h2>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Your appointment has been successfully booked. You will receive a confirmation email shortly.</p>
         </div>
-        <h2 class="mt-6 text-3xl font-bold text-gray-900 dark:text-white">Appointment Booked!</h2>
-        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">You will receive a confirmation email shortly.</p>
+
+        <!-- Appointment details -->
+        <div class="mt-8">
+          <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Appointment Details</h3>
+          <div class="mt-4 border-t border-gray-200 dark:border-gray-700">
+            <dl class="divide-y divide-gray-200 dark:divide-gray-700">
+              <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Date</dt>
+                <dd id="confirm-date" class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">—</dd>
+              </div>
+              <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Time</dt>
+                <dd id="confirm-time" class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">—</dd>
+              </div>
+              <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Service</dt>
+                <dd id="confirm-service" class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">—</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Buttons -->
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-bold text-white bg-primary hover:bg-primary/90 transition">
-            <span class="material-symbols-outlined text-xl">calendar_add_on</span> Add to Calendar
+          <button class="w-full flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-bold text-white bg-primary hover:bg-primary/90 transition">
+            <span class="material-symbols-outlined text-xl">calendar_add_on</span>
+            Add to Calendar
           </button>
-          <a href="index.html" class="py-2 px-4 rounded-lg text-sm font-bold text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition">Return to Home</a>
+          <a href="index.html" class="w-full flex items-center justify-center py-2 px-4 rounded-lg text-sm font-bold text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition">
+            Return to Home
+          </a>
+        </div>
+
+        <!-- Assistance -->
+        <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">Need Assistance?</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">If you have any questions or need to reschedule, please contact us.</p>
+          <p class="mt-4 text-lg font-bold text-primary">
+            <a class="hover:underline" href="tel:1-800-555-1234">1-800-555-1234</a>
+          </p>
         </div>
       </div>
     </div>
   </main>
+</div>
+
+<!-- Подстановка данных -->
+<script>
+  const date = localStorage.getItem("appointmentDate") || "July 20, 2024";
+  const time = localStorage.getItem("appointmentTime") || "10:00 AM";
+  const service = localStorage.getItem("appointmentService") || "Routine Checkup";
+
+  document.getElementById("confirm-date").textContent = date;
+  document.getElementById("confirm-time").textContent = time;
+  document.getElementById("confirm-service").textContent = service;
+</script>
 </body>
 </html>

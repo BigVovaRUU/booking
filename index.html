@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -39,13 +39,15 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center gap-3">
-          <svg class="h-8 w-8 text-primary animate-pulse" fill="none" viewBox="0 0 48 48">
+          <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48">
             <path d="M24 4.24L43.76 24 24 43.76 4.24 24 24 4.24Z" fill="currentColor"/>
           </svg>
           <h1 class="text-xl font-bold">Care Dental</h1>
         </div>
-        <button class="hidden md:flex items-center justify-center rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold hover:scale-105 transition">
-          Book Now
+
+        <!-- Theme switch -->
+        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark transition">
+          <span id="theme-icon" class="text-xl">🌙</span>
         </button>
       </div>
     </div>
@@ -61,19 +63,19 @@
         <form id="appointment-form" class="space-y-6">
           <div>
             <label for="name" class="block text-sm font-medium mb-2">Patient Name</label>
-            <input id="name" type="text" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary" placeholder="Enter your full name"/>
+            <input id="name" type="text" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary"/>
           </div>
           <div>
             <label for="phone" class="block text-sm font-medium mb-2">Contact Number</label>
-            <input id="phone" type="tel" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary" placeholder="Enter your phone number"/>
+            <input id="phone" type="tel" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary"/>
           </div>
           <div>
             <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-            <input id="email" type="email" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary" placeholder="Enter your email"/>
+            <input id="email" type="email" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary"/>
           </div>
           <div>
-            <label for="reason" class="block text-sm font-medium mb-2">Reason for Visit</label>
-            <textarea id="reason" rows="4" class="w-full p-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary" placeholder="Briefly describe the reason for your visit"></textarea>
+            <label for="reason" class="block text-sm font-medium mb-2">Service</label>
+            <textarea id="reason" rows="4" class="w-full p-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary" placeholder="Routine Checkup"></textarea>
           </div>
         </form>
       </div>
