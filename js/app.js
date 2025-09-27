@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
   const themeIcon = document.getElementById("theme-icon");
 
+  const formSection = document.getElementById("form-section");
+  const successSection = document.getElementById("success-section");
+  const backBtn = document.getElementById("back-btn");
+
+  const confirmDate = document.getElementById("confirm-date");
+  const confirmTime = document.getElementById("confirm-time");
+  const confirmService = document.getElementById("confirm-service");
+
   // Тема
   themeToggle.addEventListener("click", () => {
     document.documentElement.classList.toggle("dark");
@@ -19,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".calendar-day").forEach(d => d.classList.remove("bg-primary","text-white"));
       btn.classList.add("bg-primary","text-white");
-      localStorage.setItem("appointmentDate", `July ${i}, 2024`);
+      confirmDate.textContent = `July ${i}, 2024`;
     });
     calendar.appendChild(btn);
   }
@@ -37,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("change", () => {
       timeSlots.querySelectorAll("div").forEach(d => d.classList.remove("bg-primary","text-white","border-primary"));
       label.querySelector("div").classList.add("bg-primary","text-white","border-primary");
-      localStorage.setItem("appointmentTime", slot);
+      confirmTime.textContent = slot;
     });
     timeSlots.appendChild(label);
   });
@@ -49,11 +57,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const phone = document.getElementById("phone").value.trim();
     const email = document.getElementById("email").value.trim();
     const service = document.getElementById("reason").value.trim() || "Routine Checkup";
+
     if (!name || !phone || !email) {
       alert("Please fill in all required fields.");
       return;
     }
-    localStorage.setItem("appointmentService", service);
-    window.location.href = "success.html";
+    confirmService.textContent = service;
+
+    formSection.classList.add("hidden");
+    successSection.classList.remove("hidden");
+  });
+
+  // Вернуться назад
+  backBtn.addEventListener("click", () => {
+    successSection.classList.add("hidden");
+    formSection.classList.remove("hidden");
   });
 });
