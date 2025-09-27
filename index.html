@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="css/style.css"/>
   <script>
     tailwind.config = {
       darkMode: "class",
@@ -35,48 +36,52 @@
 <body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
 <div class="flex flex-col min-h-screen">
 
-  <!-- Шапка -->
+  <!-- Header -->
   <header class="bg-content-light dark:bg-content-dark border-b border-border-light dark:border-border-dark sticky top-0 z-10">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center gap-3">
-          <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48">
-            <path d="M24 4.24L43.76 24 24 43.76 4.24 24 24 4.24Z" fill="currentColor"/>
-          </svg>
-          <h1 class="text-xl font-bold">Care Dental</h1>
-        </div>
-        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark transition">
-          <span id="theme-icon" class="text-xl">🌙</span>
-        </button>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <div class="flex items-center gap-3">
+        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48">
+          <path d="M24 4.24L43.76 24 24 43.76 4.24 24 24 4.24Z" fill="currentColor"/>
+        </svg>
+        <h1 class="text-xl font-bold">Care Dental</h1>
       </div>
+      <button id="theme-toggle" class="p-2 rounded-lg hover:bg-subtle-light dark:hover:bg-subtle-dark transition">
+        <span id="theme-icon" class="text-xl">🌙</span>
+      </button>
     </div>
   </header>
 
-  <!-- Основной блок -->
+  <!-- Main -->
   <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
-    <!-- ========== ФОРМА ========== -->
+    <!-- ===== Форма ===== -->
     <section id="form-section" class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 animate-[fadeIn_0.8s_ease]">
       
-      <!-- Форма -->
+      <!-- Данные -->
       <div class="bg-content-light dark:bg-content-dark p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition">
         <h2 class="text-2xl sm:text-3xl font-bold mb-6">Запишитесь на приём</h2>
         <form id="appointment-form" class="space-y-6">
           <div>
-            <label for="name" class="block text-sm font-medium mb-2">Имя пациента</label>
+            <label for="name" class="block text-sm font-medium mb-2">Имя</label>
             <input id="name" type="text" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary"/>
           </div>
           <div>
-            <label for="phone" class="block text-sm font-medium mb-2">Контактный телефон</label>
+            <label for="phone" class="block text-sm font-medium mb-2">Телефон</label>
             <input id="phone" type="tel" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary"/>
           </div>
           <div>
-            <label for="email" class="block text-sm font-medium mb-2">Электронная почта</label>
+            <label for="email" class="block text-sm font-medium mb-2">Email</label>
             <input id="email" type="email" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary"/>
           </div>
           <div>
             <label for="reason" class="block text-sm font-medium mb-2">Услуга</label>
-            <textarea id="reason" rows="4" class="w-full p-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary" placeholder="Профилактический осмотр"></textarea>
+            <select id="reason" class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary">
+              <option value="Профилактический осмотр">Профилактический осмотр</option>
+              <option value="Чистка зубов">Чистка зубов</option>
+              <option value="Лечение кариеса">Лечение кариеса</option>
+              <option value="Отбеливание зубов">Отбеливание зубов</option>
+              <option value="Хирургия">Хирургия</option>
+            </select>
           </div>
         </form>
       </div>
@@ -84,7 +89,15 @@
       <!-- Дата и время -->
       <div class="space-y-8">
         <div class="bg-content-light dark:bg-content-dark p-6 sm:p-8 rounded-xl shadow-md">
-          <h3 class="text-xl font-bold mb-4">Выберите дату</h3>
+          <div class="flex justify-between items-center mb-4">
+            <button id="prev-month" class="p-2 rounded-full hover:bg-subtle-light dark:hover:bg-subtle-dark">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <p id="month-label" class="font-semibold text-lg">Июль 2024</p>
+            <button id="next-month" class="p-2 rounded-full hover:bg-subtle-light dark:hover:bg-subtle-dark">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
           <div id="calendar" class="calendar-grid text-center text-sm"></div>
         </div>
 
@@ -93,13 +106,13 @@
           <div id="time-slots" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
         </div>
 
-        <button id="confirm-btn" class="w-full flex items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold hover:scale-105 transition">
+        <button id="confirm-btn" class="w-full flex items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold hover:scale-105 transition fixed bottom-4 left-1/2 -translate-x-1/2 max-w-xs">
           Подтвердить запись
         </button>
       </div>
     </section>
 
-    <!-- ========== УСПЕХ ========== -->
+    <!-- ===== Успех ===== -->
     <section id="success-section" class="hidden max-w-md mx-auto animate-[fadeIn_0.8s_ease]">
       <div class="bg-content-light dark:bg-content-dark p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 text-center">
         
@@ -132,7 +145,7 @@
         </div>
 
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-bold text-white bg-primary hover:bg-primary/90 transition">
+          <button id="add-calendar" class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-bold text-white bg-primary hover:bg-primary/90 transition">
             <span class="material-symbols-outlined text-xl">calendar_add_on</span>
             Добавить в календарь
           </button>
@@ -142,6 +155,11 @@
         </div>
       </div>
     </section>
+
+    <!-- Toast -->
+    <div id="toast" class="hidden fixed bottom-6 right-6 bg-primary text-white px-4 py-2 rounded-lg shadow-lg animate-fadeIn">
+      Запись успешно создана ✅
+    </div>
 
   </main>
 </div>
